@@ -5,8 +5,16 @@ import {
   ScrollView, 
   KeyboardAvoidingView, 
   Platform  } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function App() {
+
+  const navigation = useNavigation();
+
+  const handleCreateAccount = () => {
+    navigation.navigate('Inscription');
+  };
+
   return (
     <View style={styles.contenu}>
     <KeyboardAvoidingView 
@@ -23,25 +31,30 @@ export default function App() {
         <TextInput 
           placeholder="Adresse mail ou Numéro" 
           style={styles.input} 
+          keyboardShouldPersistTaps="handled"
         />
         
         <TextInput 
           placeholder="Mot de passe" 
           secureTextEntry={true} 
           style={styles.input} 
+          keyboardShouldPersistTaps="handled"
         />
-
-        <TouchableOpacity style={styles.boutonOublie}>
-          <Text style={styles.texteOublie}>Mot de passe oublié ?</Text>
-        </TouchableOpacity>
 
         <TouchableOpacity style={styles.boutonPrincipal}>
           <Text style={styles.texteBouton}>Se connecter</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.boutonSecondaire}>
-          <Text style={[styles.texteBouton, { color: '#4ca9f0' }]}>Créer un compte</Text>
+        <TouchableOpacity style={styles.boutonOublie}>
+          <Text style={styles.texteOublie}>Mot de passe oublié ?</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+            style={styles.boutonSecondaire}
+            onPress={handleCreateAccount}
+          >
+            <Text style={[styles.texteBouton, { color: '#4ca9f0' }]}>Créer un compte</Text>
+          </TouchableOpacity>
       </ScrollView>
     </KeyboardAvoidingView>
   </View>
@@ -51,7 +64,7 @@ export default function App() {
 const styles = StyleSheet.create({
   contenu :{
     flex: 1, 
-    backgroundColor: '#dee7ea',
+    backgroundColor: '#eef7f9',
   },
   scrollContainer: {
     flexGrow: 1,
@@ -117,7 +130,8 @@ const styles = StyleSheet.create({
   color: '#333',
   marginBottom: 15,      
   borderWidth: 1,
-  borderColor: '#e9ecef',  
+  borderColor: '#0c0d0d',  
+  borderStyle: 'solid',
 },
 scrollContainer: {
     paddingHorizontal: 25,
